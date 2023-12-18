@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, TouchableOpacity, Image, StyleSheet, FlatList, Modal  } from 'react-native';
+import { Text, View, TouchableOpacity, Image, StyleSheet, FlatList, Modal, Alert  } from 'react-native';
 import { Camera } from 'expo-camera';
 import {Entypo} from '@expo/vector-icons';
 import * as MediaLibrary from 'expo-media-library';
@@ -71,6 +71,20 @@ export default function Home() {
     return <Text>No access to camera</Text>;
   }
 
+  const saveImage = async () => {
+    if (image) {
+      try {
+        // Lưu ảnh vào thư viện
+        await MediaLibrary.saveToLibraryAsync(image);
+        Alert.alert('Thông báo', 'Ảnh đã được lưu vào thư viện thành công!');
+      } catch (error) {
+        console.error('Lỗi khi lưu ảnh:', error);
+      }
+    } else {
+      Alert.alert('Thông báo', 'Không có ảnh để lưu.');
+    }
+  };
+
   return (
     <View style={styles.container}>
         <View>
@@ -122,7 +136,7 @@ export default function Home() {
         : <View style={{flex: 1, }}>
             <View style={styles.actionTop}>
               <Text style={styles.textImage}>Chia sẻ...</Text>
-              <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'flex-end',}} onPress={()=> {}}>
+              <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'flex-end',}} onPress={()=> {saveImage();}}>
                 <Entypo name='download' size={28} color='#f1f1f1'/>
               </TouchableOpacity>
             </View>
