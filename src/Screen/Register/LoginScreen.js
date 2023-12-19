@@ -1,5 +1,5 @@
 import { Button } from '@rneui/themed';
-import React from 'react'
+import React, { useState } from 'react'
 import { ScrollView, TextInput, View, Text, StyleSheet, Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAvoidingView } from 'react-native';
@@ -11,6 +11,8 @@ import { StatusBar } from 'react-native';
 const LoginScreen = () => {
 
 const navigation = useNavigation();
+const [userName, setUserName] = useState('');
+const [password, setPassWord] = useState('');
 
     return (
 
@@ -25,12 +27,16 @@ const navigation = useNavigation();
                     <TextInput
                         style={styles.input}
                         placeholder='Số di động hoặc email'
+                        value={userName}
+                        onChangeText={setUserName}
                         placeholderTextColor='#8d8e8e'
                     />
         
                     <TextInput
                         style={styles.input}
                         placeholder='Mật khẩu'
+                        value={password}
+                        onChangeText={setPassWord}
                         placeholderTextColor='#8d8e8e'
                     />
                     <Button
@@ -53,29 +59,6 @@ const navigation = useNavigation();
                 </View>  
             </View>
         </KeyboardAvoidingView>
-        // <ScrollView contentContainerStyle={{flex: 1}}>
-        //     <View style={styles.container}>
-        //         <View style={styles.component1}>
-        //             <Image
-        //                 style={styles.image}
-        //                 source={require('../../../assets/logoStartLogin.png')}
-                        
-        //             />
-        
-        //         <View style={styles.component1}>
-        //             <Button
-        //                     title="Tạo tài khoản"
-        //                     titleStyle={[styles.login, {color: '#32CD32'}]}
-        //                     buttonStyle={styles.signUp}
-        //                     onPress={() => {
-        //                         navigation.navigate({name:'SignUp'});
-        //                         console.log('Đăng ký');
-        //                     }}
-        //             />
-        //             <Text style={styles.nameApp}>Pets Social</Text>
-        //         </View>
-        //     </View>
-        // </ScrollView>
     )
 }
 

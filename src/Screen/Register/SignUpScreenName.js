@@ -11,23 +11,32 @@ import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 
 const SignUpScreen = () => {
 
-    const navigation = useNavigation();
-    const [email, setEmail] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+
+const navigation = useNavigation();
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
             <StatusBar barStyle="light-content" />
             <View style={styles.container}>
-                <TouchableOpacity style={styles.back} onPress={() => {navigation.navigate({name:'Flash'})}}>
+                <TouchableOpacity style={styles.back} onPress={() => {navigation.navigate({name:'SignUpEmail'})}}>
                     <FontAwesomeIcon style={{color: '#fff'}} size={22} icon={faAngleLeft} />
                 </TouchableOpacity>
                 <View style={styles.component1}>
-                    <Text style={styles.titleEmail}>What's your email?</Text>
+                    <Text style={styles.titleEmail}>What's your name?</Text>
                     <TextInput
                         style={styles.input}
-                        value={email}
-                        onChangeText={setEmail}
-                        placeholder='Email address'
+                        placeholder='First name'
+                        value={firstName}
+                        onChangeText={setFirstName}
+                        placeholderTextColor='#8d8e8e'
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Last name'
+                        value={lastName}
+                        onChangeText={setLastName}
                         placeholderTextColor='#8d8e8e'
                     />
                      
@@ -35,19 +44,11 @@ const SignUpScreen = () => {
                 </View>  
                 <View style={{justifyContent: 'flex-end', alignItems: 'center', width: '100%',}}>
                     <Button
-                        title="Điều khoản dịch vụ..."
-                        titleStyle={{color: '#8d8e8e', fontSize: 14,}}
-                        buttonStyle={{backgroundColor: '#28282a', borderRadius: 50, width: '100%',}}
-                        onPress={() => {
-                            console.log("Dieu khoan");
-                        }}
-                    />
-                    <Button
                         title="Tiếp tục ->"
                         titleStyle={styles.continue}
                         buttonStyle={{backgroundColor: '#ffb800', width: '100%', borderRadius: 50, padding: 10,marginTop: 10,}}
                         onPress={() => {
-                            navigation.navigate({name:'SignUpPW'});
+                            navigation.navigate({name:'Login'});
                         }}
                     />    
                 </View> 

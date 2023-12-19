@@ -23,7 +23,7 @@ const navigation = useNavigation();
                 title='Create an account'
                 titleStyle={{color: '#000', fontSize: 18,}}
                 buttonStyle={styles.btnCreate}
-                onPress={()=>{}}
+                onPress={()=>{navigation.navigate({name: 'SignUpEmail'}), console.log('SignUp')}}
            />
            <Button
                 title='Sign in'
